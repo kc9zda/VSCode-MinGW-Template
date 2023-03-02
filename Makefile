@@ -16,6 +16,7 @@ $(PROGRAM_NAME): $(OBJ_FILES) $(RES_FILE)
 	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(OBJ_DIR)/ $(HDRS)
+	mkdir -p "$(dir $@)"
 	$(CC) $(CPPFLAGS) -c -o $@ $<
 
 $(RES_FILE): $(RC_FILE)

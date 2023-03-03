@@ -15,15 +15,12 @@ CPPFLAGS := -g -DUNICODE
 $(PROGRAM_NAME): $(OBJ_FILES) $(RES_FILE)
 	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBFLAGS)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(OBJ_DIR)/ $(HDRS)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(HDRS)
 	mkdir -p "$(dir $@)"
 	$(CC) $(CPPFLAGS) -c -o $@ $<
 
 $(RES_FILE): $(RC_FILE)
 	windres --input $^ --output $@ --output-format=coff
-
-$(OBJ_DIR)/:
-	mkdir $(OBJ_DIR)
 
 clean:
 	rm -f $(OBJ_FILES) $(PROGRAM_NAME) $(RES_FILE)
